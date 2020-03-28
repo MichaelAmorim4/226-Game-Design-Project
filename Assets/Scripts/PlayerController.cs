@@ -43,8 +43,8 @@ public class PlayerController : MonoBehaviour
           position += moveVector * speed * Time.deltaTime;
           rbody.MovePosition(position);
 
-          anim.SetFloat("moveX", moveX);
-          anim.SetFloat("moveY", moveY);      
+          //anim.SetFloat("lookX", moveX);
+          //anim.SetFloat("lookY", moveY);      
     
     }
 }

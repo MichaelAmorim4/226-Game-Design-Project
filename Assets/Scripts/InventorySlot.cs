@@ -5,7 +5,7 @@ using UnityEngine.EventSystems;
 
 /* Sits on all InventorySlots. */
 
-public class InventorySlot : MonoBehaviour
+public class InventorySlot : MonoBehaviour, IDropHandler
 {
 
     public Image icon;
@@ -45,6 +45,15 @@ public class InventorySlot : MonoBehaviour
         if (item != null)
         {
             item.Use();
+        }
+    }
+
+    public void OnDrop(PointerEventData eventData)
+    {
+        Debug.Log(GetComponent<RectTransform>().anchoredPosition);
+        if (eventData.pointerDrag != null)
+        {
+            eventData.pointerDrag.GetComponent<RectTransform>().anchoredPosition = GetComponent<RectTransform>().anchoredPosition;
         }
     }
 
