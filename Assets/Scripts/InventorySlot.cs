@@ -8,8 +8,11 @@ using UnityEngine.EventSystems;
 public class InventorySlot : MonoBehaviour, IDropHandler
 {
 
+    public static InventorySlot inventorySlot;
+
     public Image icon;
     public Button removeButton;
+    public int slotNumber;
 
     Item item;  // Current item in the slot
 
@@ -17,10 +20,12 @@ public class InventorySlot : MonoBehaviour, IDropHandler
     public void AddItem(Item newItem)
     {
         item = newItem;
-
         icon.sprite = item.icon;
         icon.enabled = true;
         removeButton.interactable = true;
+
+        Inventory.instance.items[slotNumber] = item;
+
     }
 
     // Clear the slot
@@ -31,6 +36,9 @@ public class InventorySlot : MonoBehaviour, IDropHandler
         icon.sprite = null;
         icon.enabled = false;
         removeButton.interactable = false;
+
+        Inventory.instance.items[slotNumber] = null;
+
     }
 
     // If the remove button is pressed, this function will be called.
@@ -48,12 +56,20 @@ public class InventorySlot : MonoBehaviour, IDropHandler
         }
     }
 
+    public Item GetItem()
+    {
+        return this.item;
+    }
+
+
+
     public void OnDrop(PointerEventData eventData)
     {
-        Debug.Log(GetComponent<RectTransform>().anchoredPosition);
         if (eventData.pointerDrag != null)
         {
-            eventData.pointerDrag.GetComponent<RectTransform>().anchoredPosition = GetComponent<RectTransform>().anchoredPosition;
+            AddItem(DragDrop.GetCurrentItem());
+            eventData.pointerDrag.GetComponent<RectTransform>().anchoredPosition = GetComponent<RectTransform>().anchoredPosition + new Vector2(-99, 139);
+
         }
     }
 

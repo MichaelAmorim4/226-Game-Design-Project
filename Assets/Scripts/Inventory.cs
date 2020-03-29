@@ -19,26 +19,34 @@ public class Inventory : MonoBehaviour
     public delegate void OnItemChanged();
     public OnItemChanged onItemChangedCallback;
 
-    public int space = 10;  // Amount of item spaces
+    public int space;  // Amount of item spaces
 
     // Our current list of items in the inventory
-    public List<Item> items = new List<Item>();
+    public List<Item> items = new List<Item>(20);
 
     // Add a new item if enough room
     public void Add(Item item)
     {
+
+        InventorySlot[] slots = GetComponentsInChildren<InventorySlot>();
+
         if (item.showInInventory)
         {
-            if (items.Count >= space)
+            
+            for (int i = 0; i < 20; i++)
             {
-                Debug.Log("Not enough room.");
-                return;
+
+                if (items[i] == null)
+                {
+                    items[i] = item;
+                    onItemChangedCallback.Invoke();
+                    return;
+                }
+
             }
 
-            items.Add(item);
-
-            if (onItemChangedCallback != null)
-                onItemChangedCallback.Invoke();
+            Debug.Log("Not enough room.");
+                
         }
     }
 

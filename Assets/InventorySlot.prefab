@@ -50,8 +50,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ba0ff20a521c9f41bd55bd8f680b808, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  icon: {fileID: 5718235230339146772}
+  icon: {fileID: 0}
   removeButton: {fileID: 8257609177666632176}
+  slotNumber: 0
 --- !u!1 &6064255467113046446
 GameObject:
   m_ObjectHideFlags: 0
@@ -70,7 +71,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2681121087206427738
 RectTransform:
   m_ObjectHideFlags: 0
@@ -275,6 +276,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canvas: {fileID: 0}
+  inventorySlot: {fileID: 0}
 --- !u!1 &7995581307985639659
 GameObject:
   m_ObjectHideFlags: 0

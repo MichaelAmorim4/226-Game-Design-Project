@@ -15,6 +15,12 @@ public class InventoryUI : MonoBehaviour
     void Start()
     {
         inventory = Inventory.instance;
+
+        for(int i = 0; i < 20; i++)
+        {
+            inventory.items.Add(null);
+        }
+
         inventory.onItemChangedCallback += UpdateUI;
     }
 
@@ -38,7 +44,8 @@ public class InventoryUI : MonoBehaviour
 
         for (int i = 0; i < slots.Length; i++)
         {
-            if (i < inventory.items.Count)
+                        
+            if (inventory.items[i] != null)
             {
                 slots[i].AddItem(inventory.items[i]);
             }
