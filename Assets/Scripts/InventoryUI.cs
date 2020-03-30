@@ -53,6 +53,7 @@ public class InventoryUI : MonoBehaviour
             {
                 if (inventoryUI.activeSelf && craftingUI.activeSelf)
                 {
+                    Debug.Log("closing");
                     CheckCraftingSlots();
                     craftingUI.SetActive(false);
                     craftingIcons.SetActive(false);
@@ -79,6 +80,8 @@ public class InventoryUI : MonoBehaviour
     public void UpdateUI()
     {
         slots = GetComponentsInChildren<InventorySlot>();
+
+        Debug.Log(slots.Length);
 
         for (int i = 0; i < slots.Length; i++)
         {

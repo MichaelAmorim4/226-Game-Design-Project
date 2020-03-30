@@ -26,6 +26,8 @@ public class DragDrop : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDrag
 
     public void OnBeginDrag(PointerEventData eventData)
     {
+        Debug.Log("Begin Drag");
+
         canvasGroup.alpha = 0.5f;
         initial = rectTransform.anchoredPosition;
         currentItemData = inventorySlot.GetItem();
@@ -60,19 +62,6 @@ public class DragDrop : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDrag
             }
 
         }
-
-        /*if (InventorySlot.GetCurrentSlot().slotNumber >= 20 && InventorySlot.GetCurrentSlot().slotNumber <= 25)
-        {
-            string word = "";
-            InventorySlot[] slots = InventoryUI.GetInventorySlots();
-            for (int i = 20; i < 26; i++)
-            {
-                if (slots[i].item != null)
-                    word = word + slots[i].item.name;
-            }
-
-            slots[26].AddItem(CraftingRecipes.ReadWord(word));
-        }*/
 
         isDragging = false;
         canvasGroup.blocksRaycasts = true;    

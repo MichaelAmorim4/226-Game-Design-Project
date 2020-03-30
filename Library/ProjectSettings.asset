@@ -4,7 +4,7 @@
 PlayerSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 18
-  productGUID: 04fc21a6f0461bd4a9489b95cf647b18
+  productGUID: afe4f197be549ca4a9bef3ca06dc8373
   AndroidProfiler: 0
   AndroidFilterTouchesWhenObscured: 0
   AndroidEnableSustainedPerformanceMode: 0
@@ -13,7 +13,7 @@ PlayerSettings:
   useOnDemandResources: 0
   accelerometerFrequency: 60
   companyName: DefaultCompany
-  productName: Project 1
+  productName: map
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 0.13725491, g: 0.12156863, b: 0.1254902, a: 1}
@@ -572,7 +572,6 @@ PlayerSettings:
       daydreamIconForeground: {fileID: 0}
       daydreamIconBackground: {fileID: 0}
   cloudServicesEnabled:
-    Collab: 1
     UNet: 1
   luminIcon:
     m_Name: 
@@ -593,9 +592,9 @@ PlayerSettings:
   facebookXfbml: 0
   facebookFrictionlessRequests: 1
   apiCompatibilityLevel: 6
-  cloudProjectId: 4f5f0deb-de40-445f-8363-e9001051cdff
+  cloudProjectId: 45e8ab1b-6358-4629-89e5-ff1c76cb5df5
   framebufferDepthMemorylessMode: 0
-  projectName: Project 1
+  projectName: map
   organizationId: rangozhang98
   cloudEnabled: 0
   enableNativePlatformBackendsForNewInputSystem: 0
