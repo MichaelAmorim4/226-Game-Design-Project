@@ -12,6 +12,8 @@ public class InventoryUI : MonoBehaviour
     public GameObject craftingIcons;// The entire UI
     public Transform itemsParent;   // The parent object of all the items
 
+    public static bool craftingOpen = false;
+
     Inventory inventory;    // Our current inventory
     static InventorySlot[] slots;
 
@@ -36,6 +38,15 @@ public class InventoryUI : MonoBehaviour
             if (Input.GetButtonDown("Inventory"))
             {
                 inventoryUI.SetActive(!inventoryUI.activeSelf);
+
+                if (craftingUI.activeSelf && inventoryUI.activeSelf)
+                {
+                    craftingOpen = true;
+                } else if (!inventoryUI.activeSelf)
+                {
+                    craftingOpen = false;
+                }
+
             }
 
             if (Input.GetButtonDown("Crafting"))
@@ -45,12 +56,14 @@ public class InventoryUI : MonoBehaviour
                     CheckCraftingSlots();
                     craftingUI.SetActive(false);
                     craftingIcons.SetActive(false);
+                    craftingOpen = false;
                 }
                 else
                 {
                     craftingUI.SetActive(true);
                     craftingIcons.SetActive(true);
                     inventoryUI.SetActive(true);
+                    craftingOpen = true;
                 }
 
             }
@@ -79,6 +92,19 @@ public class InventoryUI : MonoBehaviour
                 slots[i].ClearSlot();
             }
         }
+
+        if (slots.Length > 20)
+        {
+            string word = "";
+            for (int i = 20; i < 26; i++)
+            {
+                if (slots[i].item != null)
+                    word = word + slots[i].item.name;
+            }
+
+            slots[26].AddItem(CraftingRecipes.ReadWord(word));
+        }
+
     }
 
     public void CheckCraftingSlots()
@@ -86,7 +112,7 @@ public class InventoryUI : MonoBehaviour
 
         slots = GetComponentsInChildren<InventorySlot>();
 
-        for (int i = 26; i > 19; i--)
+        for (int i = 25; i > 19; i--)
         {
 
             if (slots[i].item != null)
@@ -99,6 +125,8 @@ public class InventoryUI : MonoBehaviour
                 slots[i].ClearSlot();
             }
         }
+
+        slots[26].ClearSlot();
 
     }
 

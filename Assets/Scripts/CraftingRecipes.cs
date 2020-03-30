@@ -19,7 +19,6 @@ public class CraftingRecipes : MonoBehaviour
     public static Item ReadWord(string word)
     {
 
-        Debug.Log(word);
         switch (word)
         {
             case "KEY":

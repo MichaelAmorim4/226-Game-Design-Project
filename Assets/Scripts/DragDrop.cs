@@ -61,7 +61,7 @@ public class DragDrop : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDrag
 
         }
 
-        if (InventorySlot.GetCurrentSlot().slotNumber >= 20 && InventorySlot.GetCurrentSlot().slotNumber <= 25)
+        /*if (InventorySlot.GetCurrentSlot().slotNumber >= 20 && InventorySlot.GetCurrentSlot().slotNumber <= 25)
         {
             string word = "";
             InventorySlot[] slots = InventoryUI.GetInventorySlots();
@@ -72,7 +72,7 @@ public class DragDrop : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDrag
             }
 
             slots[26].AddItem(CraftingRecipes.ReadWord(word));
-        }
+        }*/
 
         isDragging = false;
         canvasGroup.blocksRaycasts = true;    

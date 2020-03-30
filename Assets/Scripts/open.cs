@@ -5,7 +5,8 @@ using UnityEngine;
 public class Open : Interactable
 {
     
-    public Item item;   // Item to put in the inventory if picked up
+    public Item required;   // Item to put in the inventory if picked up
+    public Item add;
 
     // When the player interacts with the item
     public override void Interact()
@@ -20,12 +21,14 @@ public class Open : Interactable
     {
         InventorySlot[] slots = InventoryUI.GetInventorySlots();
 
-        for (int i = 0; i < 27; i++)
+        for (int i = 0; i < 20; i++)
         {
 
-            if (slots[i].item == item)
+            if (slots[i].item == required)
             {
                 Destroy(gameObject);
+                slots[i].ClearSlot();
+                Inventory.instance.Add(add);
             }
 
         }

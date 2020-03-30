@@ -18,8 +18,8 @@ public class ItemPickup : Interactable
     {
         Debug.Log("Picking up " + item.name);
         Inventory.instance.Add(item);   // Add to inventory
-
-        Destroy(gameObject);    // Destroy item from scene
+        
+        Destroy(gameObject);
     }
 
 }
