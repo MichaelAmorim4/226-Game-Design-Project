@@ -61,6 +61,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\NewBehaviourScript.cs" />
+    <Compile Include="Assets\Scripts\CraftingRecipes.cs" />
     <Compile Include="Assets\Scripts\drag.cs" />
     <Compile Include="Assets\Scripts\DragDrop.cs" />
     <Compile Include="Assets\Scripts\Interactable.cs" />
@@ -69,7 +70,7 @@
     <Compile Include="Assets\Scripts\InventoryUI.cs" />
     <Compile Include="Assets\Scripts\Item.cs" />
     <Compile Include="Assets\Scripts\ItemPickup.cs" />
-    <Compile Include="Assets\Scripts\open.cs" />
+    <Compile Include="Assets\Scripts\Open.cs" />
     <Compile Include="Assets\Scripts\PlayerController.cs" />
     <Compile Include="Assets\Scripts\ThingWhichHasAScriptableObject.cs" />
     <Compile Include="Assets\Scripts\trigger.cs" />

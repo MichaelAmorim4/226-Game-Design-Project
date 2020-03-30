@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class DragDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IEndDragHandler, IDragHandler, IDropHandler {
+public class DragDrop : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHandler {
 
     [SerializeField] private Canvas canvas;
     [SerializeField] private InventorySlot inventorySlot;
@@ -12,7 +12,9 @@ public class DragDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, I
     private CanvasGroup canvasGroup;
 
     private static Item currentItemData;
+    private static bool isDragging = false;
 
+    private Vector2 start;
     private Vector2 initial;
     private Vector2 current;
 
@@ -27,6 +29,7 @@ public class DragDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, I
         canvasGroup.alpha = 0.5f;
         initial = rectTransform.anchoredPosition;
         currentItemData = inventorySlot.GetItem();
+        isDragging = true;
         canvasGroup.blocksRaycasts = false;
     }
 
@@ -46,25 +49,43 @@ public class DragDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, I
 
         } else
         {
-
-            inventorySlot.ClearSlot();
-            rectTransform.anchoredPosition = initial;   
+            if (inventorySlot != InventorySlot.GetCurrentSlot())
+            {
+                inventorySlot.ClearSlot();
+            }
+            rectTransform.anchoredPosition = initial;
+            if (inventorySlot.slotNumber == 26)
+            {
+                InventoryUI.ClearCraftingSlots();
+            }
 
         }
-        canvasGroup.blocksRaycasts = true;
-    }
 
-    public void OnPointerDown(PointerEventData eventData)
-    {
-    }
+        if (InventorySlot.GetCurrentSlot().slotNumber >= 20 && InventorySlot.GetCurrentSlot().slotNumber <= 25)
+        {
+            string word = "";
+            InventorySlot[] slots = InventoryUI.GetInventorySlots();
+            for (int i = 20; i < 26; i++)
+            {
+                if (slots[i].item != null)
+                    word = word + slots[i].item.name;
+            }
 
-    public void OnDrop(PointerEventData eventData)
-    {
-        Debug.Log("On Drop");
+            slots[26].AddItem(CraftingRecipes.ReadWord(word));
+        }
+
+        isDragging = false;
+        canvasGroup.blocksRaycasts = true;    
+
     }
 
     public static Item GetCurrentItem()
     {
         return currentItemData;
+    }
+
+    public static bool GetIsDragging()
+    {
+        return isDragging;
     }
 }

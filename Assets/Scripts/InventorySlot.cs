@@ -14,17 +14,26 @@ public class InventorySlot : MonoBehaviour, IDropHandler
     public Button removeButton;
     public int slotNumber;
 
-    Item item;  // Current item in the slot
+    private static InventorySlot currentSlot;
+
+    public  Item item;  // Current item in the slot
 
     // Add item to the slot
     public void AddItem(Item newItem)
     {
-        item = newItem;
-        icon.sprite = item.icon;
-        icon.enabled = true;
-        removeButton.interactable = true;
+        if (newItem == null)
+        {
+            ClearSlot();
+        }
+        else
+        {
+            item = newItem;
+            icon.sprite = item.icon;
+            icon.enabled = true;
+            removeButton.interactable = true;
 
-        Inventory.instance.items[slotNumber] = item;
+            Inventory.instance.items[slotNumber] = item;
+        }
 
     }
 
@@ -65,12 +74,21 @@ public class InventorySlot : MonoBehaviour, IDropHandler
 
     public void OnDrop(PointerEventData eventData)
     {
-        if (eventData.pointerDrag != null)
+        if (slotNumber != 26)
         {
-            AddItem(DragDrop.GetCurrentItem());
-            eventData.pointerDrag.GetComponent<RectTransform>().anchoredPosition = GetComponent<RectTransform>().anchoredPosition + new Vector2(-99, 139);
+            if (eventData.pointerDrag != null)
+            {
+                AddItem(DragDrop.GetCurrentItem());
+                currentSlot = this;
+                eventData.pointerDrag.GetComponent<RectTransform>().anchoredPosition = GetComponent<RectTransform>().anchoredPosition + new Vector2(-99, 139);
 
+            }
         }
+    }
+
+    public static InventorySlot GetCurrentSlot()
+    {
+        return currentSlot;
     }
 
 }

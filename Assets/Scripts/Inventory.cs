@@ -22,7 +22,7 @@ public class Inventory : MonoBehaviour
     public int space;  // Amount of item spaces
 
     // Our current list of items in the inventory
-    public List<Item> items = new List<Item>(20);
+    public List<Item> items = new List<Item>(27);
 
     // Add a new item if enough room
     public void Add(Item item)

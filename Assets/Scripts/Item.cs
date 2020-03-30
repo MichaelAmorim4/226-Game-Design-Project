@@ -22,4 +22,9 @@ public class Item : ScriptableObject
     {
         Inventory.instance.Remove(this);
     }
+
+    public string GetName()
+    {
+        return name;
+    }
 }
