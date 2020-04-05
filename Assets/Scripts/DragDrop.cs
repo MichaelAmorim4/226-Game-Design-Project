@@ -26,8 +26,6 @@ public class DragDrop : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDrag
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        Debug.Log("Begin Drag");
-
         canvasGroup.alpha = 0.5f;
         initial = rectTransform.anchoredPosition;
         currentItemData = inventorySlot.GetItem();

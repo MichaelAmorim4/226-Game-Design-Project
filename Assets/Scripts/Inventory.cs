@@ -28,26 +28,35 @@ public class Inventory : MonoBehaviour
     public void Add(Item item)
     {
 
-        InventorySlot[] slots = GetComponentsInChildren<InventorySlot>();
-
-        if (item.showInInventory)
+        if (item == null)
         {
-            
-            for (int i = 0; i < 20; i++)
+
+        }
+        else
+        {
+
+            InventorySlot[] slots = GetComponentsInChildren<InventorySlot>();
+
+            if (item.showInInventory)
             {
 
-                if (items[i] == null)
+                for (int i = 0; i < 20; i++)
                 {
-                    items[i] = item;
-                    onItemChangedCallback.Invoke();
-                    return;
+
+                    if (items[i] == null)
+                    {
+                        items[i] = item;
+                        onItemChangedCallback.Invoke();
+                        return;
+                    }
+
                 }
 
-            }
+                Debug.Log("Not enough room.");
 
-            Debug.Log("Not enough room.");
-                
+            }
         }
+
     }
 
     // Remove an item

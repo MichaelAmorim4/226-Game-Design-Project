@@ -16,6 +16,7 @@ public class InventoryUI : MonoBehaviour
 
     Inventory inventory;    // Our current inventory
     static InventorySlot[] slots;
+    public static List<Item> items;
 
     void Start()
     {
@@ -81,7 +82,7 @@ public class InventoryUI : MonoBehaviour
     {
         slots = GetComponentsInChildren<InventorySlot>();
 
-        Debug.Log(slots.Length);
+        items = inventory.items;
 
         for (int i = 0; i < slots.Length; i++)
         {
@@ -147,6 +148,16 @@ public class InventoryUI : MonoBehaviour
     public static InventorySlot[] GetInventorySlots()
     {
         return slots;
+    }
+
+    public static List<Item> GetItems()
+    {
+        return items;
+    }
+
+    public static void RemoveItem(int i)
+    {
+        Inventory.instance.items[i] = null;
     }
 
 }
